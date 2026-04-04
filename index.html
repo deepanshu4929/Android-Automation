@@ -526,9 +526,8 @@ if (defaultAmount) amountInput.value = defaultAmount;
 amountInput.addEventListener('input', updatePreview);
 
 async function sw(endpoint) {
-  const r = await fetch(`${BASE}${endpoint}`, {
-    headers: { Authorization: `Bearer ${API_KEY}` }
-  });
+  const sep = endpoint.includes('?') ? '&' : '?';
+  const r = await fetch(`${BASE}${endpoint}${sep}access_token=${API_KEY}`);
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return r.json();
 }
@@ -683,10 +682,9 @@ async function submitExpense() {
   Object.entries(body).forEach(([k, v]) => form.append(k, v));
 
   try {
-    const r = await fetch(`${BASE}/create_expense`, {
+    const r = await fetch(`${BASE}/create_expense?access_token=${API_KEY}`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${API_KEY}`,
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: form.toString()
