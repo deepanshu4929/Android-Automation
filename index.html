@@ -16,6 +16,7 @@
     --text: #f0f0f0;
     --muted: #6b6b6b;
     --danger: #ff5a5a;
+    --danger-dim: rgba(255, 90, 90, 0.12);
     --radius: 16px;
   }
 
@@ -29,410 +30,224 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px 16px 48px;
+    padding: 24px 16px 64px;
   }
 
   header {
-    width: 100%;
-    max-width: 480px;
+    width: 100%; max-width: 480px;
     margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
     animation: fadeUp 0.5s ease both;
   }
 
   .logo {
-    width: 40px;
-    height: 40px;
-    background: var(--accent);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 18px;
-    color: #0d0d0d;
+    width: 40px; height: 40px;
+    background: var(--accent); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: #0d0d0d;
   }
 
-  header h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    letter-spacing: -0.5px;
-  }
-
-  header span {
-    color: var(--accent);
-  }
+  header h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
+  header span { color: var(--accent); }
 
   .card {
-    width: 100%;
-    max-width: 480px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    margin-bottom: 12px;
+    width: 100%; max-width: 480px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; margin-bottom: 12px;
     animation: fadeUp 0.5s ease both;
   }
-
   .card:nth-child(2) { animation-delay: 0.05s; }
   .card:nth-child(3) { animation-delay: 0.1s; }
   .card:nth-child(4) { animation-delay: 0.15s; }
 
   .section-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 14px;
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
   }
 
-  /* Amount */
-  .amount-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
+  .amount-wrapper { position: relative; display: flex; align-items: center; }
   .currency-symbol {
-    position: absolute;
-    left: 16px;
-    font-family: 'Syne', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--accent);
-    pointer-events: none;
+    position: absolute; left: 16px;
+    font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700;
+    color: var(--accent); pointer-events: none;
   }
-
   #amount-input {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 16px 18px 44px;
-    font-family: 'Syne', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    -moz-appearance: textfield;
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 16px 18px 44px;
+    font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 700;
+    color: var(--text); outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s; -moz-appearance: textfield;
   }
-
   #amount-input::-webkit-outer-spin-button,
   #amount-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  #amount-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
 
-  #amount-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-dim);
-  }
-
-  /* Description */
   #desc-input {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text);
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
   }
-
   #desc-input::placeholder { color: var(--muted); }
+  #desc-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
 
-  #desc-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-dim);
+  .tabs {
+    display: flex; gap: 6px; margin-bottom: 16px;
+    background: var(--surface2); padding: 4px; border-radius: 10px;
   }
-
-  /* Search */
-  .search-wrapper {
-    position: relative;
-    margin-bottom: 14px;
+  .tab-btn {
+    flex: 1; background: none; border: none; padding: 8px; border-radius: 7px;
+    font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600;
+    color: var(--muted); cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;
   }
+  .tab-btn.active { background: var(--accent); color: #0d0d0d; }
 
+  .search-wrapper { position: relative; margin-bottom: 14px; }
   .search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    font-size: 16px;
-    pointer-events: none;
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); font-size: 16px; pointer-events: none;
   }
-
   #search-input {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px 14px 12px 40px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s;
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 12px 14px 12px 40px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
+    outline: none; transition: border-color 0.2s;
   }
-
   #search-input::placeholder { color: var(--muted); }
   #search-input:focus { border-color: var(--accent); }
 
-  /* Tabs */
-  .tabs {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 16px;
-    background: var(--surface2);
-    padding: 4px;
-    border-radius: 10px;
-  }
-
-  .tab-btn {
-    flex: 1;
-    background: none;
-    border: none;
-    padding: 8px;
-    border-radius: 7px;
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
-  }
-
-  .tab-btn.active {
-    background: var(--accent);
-    color: #0d0d0d;
-  }
-
-  /* List */
   .contact-list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    max-height: 280px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
+    display: flex; flex-direction: column; gap: 6px;
+    max-height: 260px; overflow-y: auto;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
   }
-
   .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    border-radius: 10px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: all 0.15s;
-    background: var(--surface2);
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 10px; cursor: pointer;
+    border: 1px solid transparent; transition: all 0.15s; background: var(--surface2);
   }
-
   .contact-item:hover { border-color: var(--border); }
-
-  .contact-item.selected {
-    border-color: var(--accent);
-    background: var(--accent-dim);
-  }
+  .contact-item.selected { border-color: var(--accent); background: var(--accent-dim); }
 
   .avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    flex-shrink: 0;
-    background: var(--border);
-    color: var(--muted);
+    width: 38px; height: 38px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    flex-shrink: 0; background: var(--border); color: var(--muted);
   }
-
-  .avatar img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
+  .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
   .contact-info { flex: 1; min-width: 0; }
+  .contact-name { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .contact-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-  .contact-name {
-    font-size: 14px;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .check-box {
+    width: 20px; height: 20px; border-radius: 6px;
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.2s;
   }
+  .contact-item.selected .check-box { background: var(--accent); border-color: var(--accent); }
+  .check-box svg { width: 11px; height: 11px; opacity: 0; transition: opacity 0.15s; }
+  .contact-item.selected .check-box svg { opacity: 1; }
 
-  .contact-sub {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
+  /* Share breakdown */
+  .share-breakdown {
+    margin-top: 16px; border-top: 1px solid var(--border);
+    padding-top: 16px; display: none;
   }
+  .share-breakdown.visible { display: block; }
 
-  .check-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    opacity: 0;
-    transform: scale(0.6);
-    transition: all 0.2s;
+  .share-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
   }
-
-  .contact-item.selected .check-icon {
-    opacity: 1;
-    transform: scale(1);
+  .split-equally-btn {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 12px;
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    color: var(--accent); cursor: pointer; transition: all 0.2s;
   }
+  .split-equally-btn:hover { background: var(--accent-dim); border-color: var(--accent); }
 
-  .check-icon svg { width: 11px; height: 11px; }
-
-  /* Split preview */
-  .split-preview {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 16px;
-    background: var(--accent-dim);
-    border: 1px solid rgba(200, 240, 90, 0.25);
-    border-radius: 12px;
-    margin-top: 14px;
+  .share-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .share-name {
+    flex: 1; font-size: 13px; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
   }
+  .share-you { color: var(--accent); }
 
-  .split-person {
-    text-align: center;
-    flex: 1;
+  .share-input-wrapper { position: relative; flex-shrink: 0; width: 110px; }
+  .share-input-wrapper span {
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    font-size: 13px; color: var(--muted); pointer-events: none;
   }
-
-  .split-name {
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 4px;
+  .share-input {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 8px 8px 22px;
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--text); outline: none; transition: border-color 0.2s;
+    -moz-appearance: textfield; text-align: right;
   }
+  .share-input::-webkit-outer-spin-button,
+  .share-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .share-input:focus { border-color: var(--accent); }
 
-  .split-amount {
-    font-family: 'Syne', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--accent);
+  .sum-indicator {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; border-radius: 10px; margin-top: 10px;
+    font-size: 13px; transition: all 0.3s;
+    background: var(--surface2); border: 1px solid var(--border);
   }
+  .sum-indicator.ok { background: var(--accent-dim); border-color: rgba(200,240,90,0.3); }
+  .sum-indicator.bad { background: var(--danger-dim); border-color: rgba(255,90,90,0.3); }
+  .sum-label { color: var(--muted); font-size: 12px; }
+  .sum-right { display: flex; align-items: center; gap: 10px; }
+  .sum-remaining { font-size: 12px; }
+  .sum-indicator.ok .sum-remaining { color: var(--accent); }
+  .sum-indicator.bad .sum-remaining { color: var(--danger); }
+  .sum-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; }
+  .sum-indicator.ok .sum-value { color: var(--accent); }
+  .sum-indicator.bad .sum-value { color: var(--danger); }
 
-  .split-divider {
-    color: var(--muted);
-    font-size: 20px;
-    padding: 0 8px;
-  }
-
-  /* Submit */
   #submit-btn {
-    width: 100%;
-    max-width: 480px;
-    background: var(--accent);
-    color: #0d0d0d;
-    border: none;
-    border-radius: var(--radius);
-    padding: 18px;
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 4px;
+    width: 100%; max-width: 480px;
+    background: var(--accent); color: #0d0d0d;
+    border: none; border-radius: var(--radius); padding: 18px;
+    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; letter-spacing: 0.5px;
+    cursor: pointer; transition: all 0.2s; margin-top: 4px;
     animation: fadeUp 0.5s ease 0.2s both;
   }
-
-  #submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(200, 240, 90, 0.25);
-  }
-
+  #submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,240,90,0.25); }
   #submit-btn:active:not(:disabled) { transform: translateY(0); }
+  #submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  #submit-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  /* Loading */
   .loading-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 32px 0;
-    color: var(--muted);
-    font-size: 14px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 12px; padding: 32px 0; color: var(--muted); font-size: 14px;
   }
-
   .spinner {
-    width: 28px;
-    height: 28px;
-    border: 2px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
+    width: 28px; height: 28px; border: 2px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite;
   }
 
-  /* Toast */
   .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
+    position: fixed; bottom: 24px; left: 50%;
     transform: translateX(-50%) translateY(80px);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 12px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    white-space: nowrap;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 100px; padding: 12px 20px;
+    font-size: 14px; font-weight: 500; white-space: nowrap;
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 999;
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
-
   .toast.show { transform: translateX(-50%) translateY(0); }
   .toast.success { border-color: var(--accent); color: var(--accent); }
   .toast.error { border-color: var(--danger); color: var(--danger); }
 
-  /* Error */
   .error-banner {
-    padding: 12px 16px;
-    background: rgba(255, 90, 90, 0.1);
-    border: 1px solid rgba(255, 90, 90, 0.3);
-    border-radius: 10px;
-    font-size: 13px;
-    color: var(--danger);
-    margin-bottom: 12px;
-    display: none;
+    padding: 12px 16px; background: rgba(255,90,90,0.1);
+    border: 1px solid rgba(255,90,90,0.3); border-radius: 10px;
+    font-size: 13px; color: var(--danger); margin-bottom: 12px; display: none;
   }
-
-  .empty-state {
-    text-align: center;
-    padding: 24px 0;
-    color: var(--muted);
-    font-size: 14px;
-  }
+  .empty-state { text-align: center; padding: 24px 0; color: var(--muted); font-size: 14px; }
 
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes fadeUp {
@@ -448,7 +263,6 @@
   <h1>Split <span>It</span></h1>
 </header>
 
-<!-- Amount Card -->
 <div class="card">
   <div class="section-label">Amount</div>
   <div class="amount-wrapper">
@@ -457,13 +271,11 @@
   </div>
 </div>
 
-<!-- Description Card -->
 <div class="card">
   <div class="section-label">Description</div>
   <input type="text" id="desc-input" placeholder="What's this for? e.g. Dinner, Cab..." maxlength="80">
 </div>
 
-<!-- Friends/Groups Card -->
 <div class="card">
   <div class="section-label">Split With</div>
   <div id="error-banner" class="error-banner"></div>
@@ -475,7 +287,7 @@
 
   <div class="search-wrapper">
     <span class="search-icon">⌕</span>
-    <input type="text" id="search-input" placeholder="Search..." oninput="filterList()">
+    <input type="text" id="search-input" placeholder="Search..." oninput="renderList()">
   </div>
 
   <div id="contact-list" class="contact-list">
@@ -485,45 +297,52 @@
     </div>
   </div>
 
-  <div id="split-preview" class="split-preview" style="display:none;">
-    <div class="split-person">
-      <div class="split-name">You pay</div>
-      <div class="split-amount" id="your-share">₹0</div>
+  <div class="share-breakdown" id="share-breakdown">
+    <div class="share-header">
+      <div class="section-label" style="margin:0">Shares</div>
+      <button class="split-equally-btn" onclick="splitEqually()">Split Equally</button>
     </div>
-    <div class="split-divider">⟷</div>
-    <div class="split-person">
-      <div class="split-name" id="their-name">They pay</div>
-      <div class="split-amount" id="their-share">₹0</div>
+    <div id="share-rows"></div>
+    <div class="sum-indicator" id="sum-indicator">
+      <span class="sum-label">Total assigned</span>
+      <div class="sum-right">
+        <span class="sum-remaining" id="sum-remaining"></span>
+        <span class="sum-value" id="sum-value">₹0</span>
+      </div>
     </div>
   </div>
 </div>
 
 <button id="submit-btn" disabled onclick="submitExpense()">Submit Expense</button>
-
 <div class="toast" id="toast"></div>
 
 <script>
 const params = new URLSearchParams(window.location.search);
 const API_KEY = params.get('api_key') || '';
 const defaultAmount = params.get('amount') || '';
-
 const BASE = 'https://auto-split.deepanshu4929.workers.dev';
 
-let friends = [];
-let groups = [];
+let friends = [], groups = [];
 let currentTab = 'friends';
-let selectedItem = null;
+let selectedItems = new Map(); // key -> item
+let shares = new Map();        // key -> string value
 let currentUser = null;
 
 const amountInput = document.getElementById('amount-input');
 const descInput = document.getElementById('desc-input');
 const contactList = document.getElementById('contact-list');
 const submitBtn = document.getElementById('submit-btn');
-const splitPreview = document.getElementById('split-preview');
+const shareBreakdown = document.getElementById('share-breakdown');
+const shareRowsEl = document.getElementById('share-rows');
+const sumIndicator = document.getElementById('sum-indicator');
+const sumValueEl = document.getElementById('sum-value');
+const sumRemainingEl = document.getElementById('sum-remaining');
 const errorBanner = document.getElementById('error-banner');
 
 if (defaultAmount) amountInput.value = defaultAmount;
-amountInput.addEventListener('input', updatePreview);
+amountInput.addEventListener('input', () => { splitEqually(); });
+
+function itemKey(item) { return `${item.type}:${item.id}`; }
 
 async function sw(endpoint) {
   const sep = endpoint.includes('?') ? '&' : '?';
@@ -544,77 +363,48 @@ async function loadData() {
   }
   try {
     const [meRes, friendsRes, groupsRes] = await Promise.all([
-      sw('/get_current_user'),
-      sw('/get_friends'),
-      sw('/get_groups')
+      sw('/get_current_user'), sw('/get_friends'), sw('/get_groups')
     ]);
-
     currentUser = meRes.user;
     friends = (friendsRes.friends || []).map(f => ({
-      id: f.id,
-      name: `${f.first_name} ${f.last_name || ''}`.trim(),
-      email: f.email,
-      avatar: f.picture?.medium || null,
-      type: 'friend'
+      id: f.id, name: `${f.first_name} ${f.last_name || ''}`.trim(),
+      email: f.email, avatar: f.picture?.medium || null, type: 'friend'
     }));
-
-    groups = (groupsRes.groups || [])
-      .filter(g => g.id !== 0)
-      .map(g => ({
-        id: g.id,
-        name: g.name,
-        memberCount: g.members?.length || 0,
-        avatar: null,
-        type: 'group'
-      }));
-
+    groups = (groupsRes.groups || []).filter(g => g.id !== 0).map(g => ({
+      id: g.id, name: g.name, memberCount: g.members?.length || 0, avatar: null, type: 'group'
+    }));
     renderList();
   } catch (e) {
     contactList.innerHTML = '';
-    showError('Failed to load data. Check your API key or CORS proxy.');
+    showError('Failed to load data. Check your API key.');
   }
 }
 
 function switchTab(tab) {
   currentTab = tab;
-  selectedItem = null;
-  splitPreview.style.display = 'none';
-  submitBtn.disabled = true;
   document.getElementById('search-input').value = '';
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   renderList();
 }
 
-function filterList() {
-  renderList();
-}
-
 function renderList() {
   const q = document.getElementById('search-input').value.toLowerCase();
-  const items = (currentTab === 'friends' ? friends : groups)
-    .filter(i => i.name.toLowerCase().includes(q));
-
-  if (!items.length) {
-    contactList.innerHTML = `<div class="empty-state">No ${currentTab} found</div>`;
-    return;
-  }
-
+  const items = (currentTab === 'friends' ? friends : groups).filter(i => i.name.toLowerCase().includes(q));
+  if (!items.length) { contactList.innerHTML = `<div class="empty-state">No ${currentTab} found</div>`; return; }
   contactList.innerHTML = items.map(item => {
-    const initials = item.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-    const avatarHtml = item.avatar
-      ? `<img src="${item.avatar}" alt="${item.name}">`
-      : initials;
+    const key = itemKey(item);
+    const initials = item.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+    const avatarHtml = item.avatar ? `<img src="${item.avatar}" alt="">` : initials;
     const sub = item.type === 'friend' ? (item.email || '') : `${item.memberCount} members`;
-    const sel = selectedItem?.id === item.id && selectedItem?.type === item.type ? 'selected' : '';
-
+    const sel = selectedItems.has(key) ? 'selected' : '';
     return `
-      <div class="contact-item ${sel}" onclick="selectItem(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+      <div class="contact-item ${sel}" onclick="toggleItem(${JSON.stringify(item).replace(/"/g,'&quot;')})">
         <div class="avatar">${avatarHtml}</div>
         <div class="contact-info">
           <div class="contact-name">${item.name}</div>
           ${sub ? `<div class="contact-sub">${sub}</div>` : ''}
         </div>
-        <div class="check-icon">
+        <div class="check-box">
           <svg viewBox="0 0 12 12" fill="none">
             <path d="M2 6l3 3 5-5" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -623,59 +413,111 @@ function renderList() {
   }).join('');
 }
 
-function selectItem(item) {
-  selectedItem = item;
+function toggleItem(item) {
+  const key = itemKey(item);
+  if (selectedItems.has(key)) { selectedItems.delete(key); shares.delete(key); }
+  else { selectedItems.set(key, item); }
   renderList();
-  updatePreview();
-  submitBtn.disabled = false;
+  splitEqually();
+  renderShareRows();
+  updateSubmitBtn();
 }
 
-function updatePreview() {
-  if (!selectedItem) return;
-  const amt = parseFloat(amountInput.value) || 0;
-  const half = (amt / 2).toFixed(2);
-  document.getElementById('your-share').textContent = `₹${half}`;
-  document.getElementById('their-share').textContent = `₹${half}`;
-  document.getElementById('their-name').textContent = selectedItem.name.split(' ')[0];
-  splitPreview.style.display = 'flex';
+function renderShareRows() {
+  if (selectedItems.size === 0) { shareBreakdown.classList.remove('visible'); return; }
+  shareBreakdown.classList.add('visible');
+  const allKeys = ['you', ...selectedItems.keys()];
+  shareRowsEl.innerHTML = allKeys.map(key => {
+    const isYou = key === 'you';
+    const name = isYou ? `${currentUser?.first_name || 'You'} (you)` : selectedItems.get(key).name;
+    const val = shares.get(key) || '';
+    return `
+      <div class="share-row">
+        <div class="share-name ${isYou ? 'share-you' : ''}">${name}</div>
+        <div class="share-input-wrapper">
+          <span>₹</span>
+          <input class="share-input" type="number" min="0" step="any"
+            data-key="${key}" value="${val}" placeholder="0"
+            oninput="onShareInput(this)">
+        </div>
+      </div>`;
+  }).join('');
+  updateSumIndicator();
+}
+
+function onShareInput(el) {
+  shares.set(el.dataset.key, el.value);
+  updateSumIndicator();
+}
+
+function splitEqually() {
+  const total = parseFloat(amountInput.value) || 0;
+  const count = selectedItems.size + 1;
+  if (count < 2) return;
+  const each = Math.floor((total / count) * 100) / 100;
+  const remainder = Math.round((total - each * count) * 100) / 100;
+  const yours = (each + remainder).toFixed(2);
+  shares.set('you', yours);
+  selectedItems.forEach((_, key) => shares.set(key, each.toFixed(2)));
+  renderShareRows();
+}
+
+function updateSumIndicator() {
+  if (selectedItems.size === 0) return;
+  const total = parseFloat(amountInput.value) || 0;
+  let assigned = 0;
+  shares.forEach(v => { assigned += parseFloat(v) || 0; });
+  assigned = Math.round(assigned * 100) / 100;
+  const diff = Math.round((total - assigned) * 100) / 100;
+  sumValueEl.textContent = `₹${assigned.toFixed(2)}`;
+  if (diff === 0) {
+    sumIndicator.className = 'sum-indicator ok';
+    sumRemainingEl.textContent = '✓ Matches total';
+  } else if (diff > 0) {
+    sumIndicator.className = 'sum-indicator bad';
+    sumRemainingEl.textContent = `₹${diff.toFixed(2)} unassigned`;
+  } else {
+    sumIndicator.className = 'sum-indicator bad';
+    sumRemainingEl.textContent = `₹${Math.abs(diff).toFixed(2)} over`;
+  }
+  updateSubmitBtn();
+}
+
+function updateSubmitBtn() {
+  const total = parseFloat(amountInput.value) || 0;
+  let assigned = 0;
+  shares.forEach(v => { assigned += parseFloat(v) || 0; });
+  assigned = Math.round(assigned * 100) / 100;
+  submitBtn.disabled = !(selectedItems.size > 0 && total > 0 && Math.abs(total - assigned) < 0.01);
 }
 
 async function submitExpense() {
   const amount = parseFloat(amountInput.value);
   const desc = descInput.value.trim() || 'Expense';
-
   if (!amount || amount <= 0) { showToast('Enter a valid amount', 'error'); return; }
-  if (!selectedItem) { showToast('Select someone to split with', 'error'); return; }
   if (!currentUser) { showToast('User info not loaded', 'error'); return; }
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Creating…';
 
-  const half = (amount / 2).toFixed(2);
+  const selectedList = [...selectedItems.values()];
+  const isGroup = selectedList.length === 1 && selectedList[0].type === 'group';
 
-  let body;
+  const body = { cost: amount.toFixed(2), description: desc, currency_code: 'INR' };
 
-  if (selectedItem.type === 'friend') {
-    body = {
-      cost: amount.toFixed(2),
-      description: desc,
-      currency_code: 'INR',
-      split_equally: true,
-      users__0__user_id: currentUser.id,
-      users__0__paid_share: amount.toFixed(2),
-      users__0__owed_share: half,
-      users__1__user_id: selectedItem.id,
-      users__1__paid_share: '0.00',
-      users__1__owed_share: half,
-    };
+  if (isGroup) {
+    body.group_id = selectedList[0].id;
+    body.split_equally = true;
   } else {
-    body = {
-      cost: amount.toFixed(2),
-      description: desc,
-      currency_code: 'INR',
-      group_id: selectedItem.id,
-      split_equally: true,
-    };
+    body[`users__0__user_id`] = currentUser.id;
+    body[`users__0__paid_share`] = amount.toFixed(2);
+    body[`users__0__owed_share`] = parseFloat(shares.get('you') || 0).toFixed(2);
+    selectedList.forEach((item, i) => {
+      const share = parseFloat(shares.get(itemKey(item)) || 0).toFixed(2);
+      body[`users__${i+1}__user_id`] = item.id;
+      body[`users__${i+1}__paid_share`] = '0.00';
+      body[`users__${i+1}__owed_share`] = share;
+    });
   }
 
   const form = new URLSearchParams();
@@ -684,23 +526,16 @@ async function submitExpense() {
   try {
     const r = await fetch(`${BASE}/create_expense`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Bearer ${API_KEY}`
-      },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': `Bearer ${API_KEY}` },
       body: form.toString()
     });
-
     const data = await r.json();
-    if (data.errors && Object.keys(data.errors).length > 0) {
-      throw new Error(JSON.stringify(data.errors));
-    }
-
+    if (data.errors && Object.keys(data.errors).length > 0) throw new Error(JSON.stringify(data.errors));
     showToast('✓ Expense created!', 'success');
     amountInput.value = '';
     descInput.value = '';
-    selectedItem = null;
-    splitPreview.style.display = 'none';
+    selectedItems.clear(); shares.clear();
+    shareBreakdown.classList.remove('visible');
     renderList();
   } catch (e) {
     showToast('Failed to create expense', 'error');
@@ -713,8 +548,7 @@ async function submitExpense() {
 
 function showToast(msg, type = '') {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = `toast ${type} show`;
+  t.textContent = msg; t.className = `toast ${type} show`;
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
