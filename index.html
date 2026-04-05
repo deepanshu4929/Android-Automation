@@ -413,13 +413,22 @@ function renderList() {
   }).join('');
 }
 
+function isGroupSelected() {
+  return [...selectedItems.values()].some(i => i.type === 'group');
+}
+
 function toggleItem(item) {
   const key = itemKey(item);
   if (selectedItems.has(key)) { selectedItems.delete(key); shares.delete(key); }
   else { selectedItems.set(key, item); }
   renderList();
-  splitEqually();
-  renderShareRows();
+  if (isGroupSelected()) {
+    shares.clear();
+    shareBreakdown.classList.remove('visible');
+  } else {
+    splitEqually();
+    renderShareRows();
+  }
   updateSubmitBtn();
 }
 
@@ -485,6 +494,10 @@ function updateSumIndicator() {
 
 function updateSubmitBtn() {
   const total = parseFloat(amountInput.value) || 0;
+  if (isGroupSelected()) {
+    submitBtn.disabled = !(selectedItems.size > 0 && total > 0);
+    return;
+  }
   let assigned = 0;
   shares.forEach(v => { assigned += parseFloat(v) || 0; });
   assigned = Math.round(assigned * 100) / 100;
