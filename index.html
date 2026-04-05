@@ -320,6 +320,8 @@
 const params = new URLSearchParams(window.location.search);
 const API_KEY = params.get('api_key') || '';
 const defaultAmount = params.get('amount') || '';
+const splitWithParam = (params.get('split_with') || '').trim().toLowerCase();
+const autoSubmit = params.get('auto_submit') === 'true' && !!splitWithParam;
 const BASE = 'https://auto-split.deepanshu4929.workers.dev';
 
 let friends = [], groups = [];
@@ -374,9 +376,50 @@ async function loadData() {
       id: g.id, name: g.name, memberCount: g.members?.length || 0, avatar: null, type: 'group'
     }));
     renderList();
+    if (splitWithParam) autoSelectAndSubmit();
   } catch (e) {
     contactList.innerHTML = '';
     showError('Failed to load data. Check your API key.');
+  }
+}
+
+function autoSelectAndSubmit() {
+  // Find matching friend or group (case-insensitive, partial match allowed)
+  const allItems = [...friends, ...groups];
+  const match = allItems.find(i => i.name.toLowerCase() === splitWithParam)
+    || allItems.find(i => i.name.toLowerCase().includes(splitWithParam));
+
+  if (!match) {
+    // No match — just populate amount and show normal UI
+    showError(`Could not find "${params.get('split_with')}" — please select manually.`);
+    return;
+  }
+
+  // Select the matched item
+  selectedItems.set(itemKey(match), match);
+  renderList();
+
+  if (match.type === 'group') {
+    shareBreakdown.classList.remove('visible');
+  } else {
+    splitEqually();
+    renderShareRows();
+  }
+  updateSubmitBtn();
+
+  // Switch to the right tab so user can see the selection
+  const tab = match.type === 'group' ? 'groups' : 'friends';
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  renderList();
+
+  if (autoSubmit) {
+    const amount = parseFloat(amountInput.value);
+    if (!amount || amount <= 0) {
+      showError('Amount is required for auto-submit.');
+      return;
+    }
+    submitExpense();
   }
 }
 
